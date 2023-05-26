@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="windows-1251">
+<title>Домашнее задание 1</title>
+<style>
+    /* Add some padding on document's body to prevent the content
+    to go underneath the header and footer */
+    body{        
+        padding-top: 60px;
+        padding-bottom: 40px;
+    }
+    .fixed-header, .fixed-footer{
+        width: 100%;
+        position: fixed;        
+        background: #ff00ff;
+        padding: 15px 0;
+        color: #fff;
+    }
+    .fixed-header{
+        top: 0;
+    }
+    .fixed-footer{
+        bottom: 0;
+    }
+    .container{
+        width: 80%;
+        margin: 0 auto; /* Center the DIV horizontally */
+    }
+    nav a{
+        color: #fff;
+        text-decoration: none;
+        padding: 7px 25px;
+        display: inline-block;
+    }
+</style>
+</head>
+<body>
+   
+    <div class="fixed-header">
+        <div class="container">
+
+        </div>
+    </div>
+    <div class="container">
+        <form action="predictImage" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>
+            <font face = "Arial Narrow">
+            <font color = #696969>
+            <font size = "5">
+            <div class="row">
+            <div class="col-md-4">
+                <h2> Hello,my name is Anphisa! </h2>
+                <h4> Please upload an image </h4>
+            <label for="file" id ="filePath"></label>
+            </div> <input type="file" name="filePath" style="color:transparent;" onchange="this.style.color = 'black';"
+                    id="file" accepts=".jpg, .jpeg, .png">
+                    <div class="preview">
+                        <img id="file-preview">
+                    
+                    </div> <br><br>
+                
+            <input type="submit" value="Submit" >
+            </font>
+            </p>
+        </form>
+    </div>    
+    <div>
+        <br>
+    
+        {% if scorePrediction %}
+        <h2>I think it`s a: {{scorePrediction}}</h2>
+        {% endif %}
+    </div>
+    <div>
+        {% if base64img %}
+        <img src= "{{ base64img }}" height="400px" weight ='400px'></img>
+        {% endif %}
+    </div>
+
+    <div class="fixed-footer">
+        <div class="container"></div>        
+    </div>
+</body>
+</html>
